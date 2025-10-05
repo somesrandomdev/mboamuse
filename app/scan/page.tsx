@@ -42,10 +42,16 @@ export default function ScanPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-black text-[#FFD700] flex flex-col items-center justify-center px-4 py-8">
-      <h1 className="text-4xl md:text-6xl font-serif font-bold mb-8 text-center">
-        Scanner le QR Code
-      </h1>
+    <div className="min-h-screen bg-black text-[#FFD700] flex flex-col px-4 py-8">
+      <div className="mb-4">
+        <a href="/">
+          <button className="text-[#FFD700] hover:text-white">← Retour</button>
+        </a>
+      </div>
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <h1 className="text-4xl md:text-6xl font-serif font-bold mb-8 text-center">
+          Scanner le QR Code
+        </h1>
       <p className="text-[#FFD700]/80 text-center mb-8">
         Pointe ta caméra vers un QR code pour découvrir une oeuvre
       </p>
@@ -55,6 +61,7 @@ export default function ScanPage() {
       <div className="mt-8 flex items-center space-x-2">
         <StarIcon className="w-6 h-6 text-[#FFD700]" />
         <p className="text-[#FFD700]">Scanne et découvre l'Histoire</p>
+      </div>
       </div>
     </div>
   );

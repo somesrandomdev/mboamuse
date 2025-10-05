@@ -62,10 +62,16 @@ export default function CertificatePageContent() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-[#FFD700] flex flex-col items-center justify-center px-4 py-8">
-      <h1 className="text-4xl md:text-6xl font-serif font-bold mb-8 text-center">
-        Ton Certificat
-      </h1>
+    <div className="min-h-screen bg-black text-[#FFD700] flex flex-col px-4 py-8">
+      <div className="mb-4">
+        <a href="/share">
+          <button className="text-[#FFD700] hover:text-white">← Retour</button>
+        </a>
+      </div>
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <h1 className="text-4xl md:text-6xl font-serif font-bold mb-8 text-center">
+          Ton Certificat
+        </h1>
 
       <div className="max-w-4xl w-full mb-8">
         <PDFViewer width="100%" height="500">
@@ -83,6 +89,7 @@ export default function CertificatePageContent() {
           </button>
         )}
       </PDFDownloadLink>
+      </div>
     </div>
   );
 }
