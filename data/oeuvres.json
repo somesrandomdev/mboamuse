@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "titre": "Masque Yoruba Sacré",
+    "description": "Porté par les rois lors des cérémonies du nouveau millénaire.",
+    "narration": "Regarde cette couronne. Elle a porté 7 rois. Tu es le 8e. Regarde bien.",
+    "audio": "/audio/1.mp3",
+    "image": "/images/oeuvres/1.jpg"
+  },
+  {
+    "id": "2",
+    "titre": "Statuette Dogon",
+    "description": "Symbole de protection, gardienne des ancêtres.",
+    "narration": "Elle veille. Elle protège. Elle t’observe. Tu la regardes, elle te regarde.",
+    "audio": "/audio/2.mp3",
+    "image": "/images/oeuvres/2.jpg"
+  },
+  {
+    "id": "3",
+    "titre": "Tissu Kente Royal",
+    "description": "Chaque couleur est un mot. Chaque ligne est un poème.",
+    "narration": "Le tissu parle. Écoute ses couleurs. Elles racontent ta grandeur.",
+    "audio": "/audio/3.mp3",
+    "image": "/images/oeuvres/3.jpg"
+  }
+]
