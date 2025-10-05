@@ -22,33 +22,40 @@ export default function FaceUploadPage() {
 
     setLoading(true);
 
-    // Note: This is a simplified version. In production, you'd need proper facial analysis
-    // to detect king/queen and features for the prompt
-
-    const prompt = "A majestic African king/queen, traditional golden crown, tribal face paint, cinematic lighting, ultra-realistic, facing camera, 4k";
+    const prompt = "A majestic African king/queen, traditional golden crown, tribal paint, cinematic lighting, ultra-realistic, facing camera, 4k";
 
     try {
-      const response = await fetch("https://api.together.xyz/v1/images/generations", {
+      const response = await fetch("https://api.deepai.org/api/text2img", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "stabilityai/stable-diffusion-xl-base-1.0",
-          prompt,
-          width: 1024,
-          height: 1024,
-          steps: 20,
-          n: 1,
-        }),
+        headers: { "api-key": "quickstart-QU1JTVFYUNDFT1NG" },
+        body: new URLSearchParams({ text: prompt }),
       });
 
-      const data = await response.json();
-      const imageUrl = data.data[0].url;
-      setRoyalImage(imageUrl);
+      const { output_url } = await response.json();
+      setRoyalImage(output_url);
     } catch (error) {
-      console.error("Failed to generate image:", error);
+      console.error("DeepAI failed, trying fallback...");
+      // Fallback to HuggingFace if DeepAI fails
+      try {
+        const fallbackRes = await fetch(
+          "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              inputs: prompt,
+            }),
+          }
+        );
+        const blob = await fallbackRes.blob();
+        const url = URL.createObjectURL(blob);
+        setRoyalImage(url);
+      } catch (fallbackError) {
+        console.error("Fallback failed:", fallbackError);
+      }
     } finally {
       setLoading(false);
     }
