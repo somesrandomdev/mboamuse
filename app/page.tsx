@@ -1,8 +1,30 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { oeuvres } from "./data/oeuvres";
 
 export default function Home() {
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const install = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") setDeferredPrompt(null);
+    } else {
+      alert("Installe depuis le menu de ton navigateur : ⋮  → 'Installer l'appli'");
+    }
+  };
   return (
     <main className="min-h-screen bg-black text-amber-300 flex flex-col items-center justify-center px-6">
       {/* HERO */}
@@ -20,7 +42,7 @@ export default function Home() {
         transition={{ delay: 0.5, duration: 1 }}
         className="mt-4 text-lg text-amber-200"
       >
-        Scan · Listen · Become Royalty
+        Scanner · Écouter · Devenir Royal
       </motion.p>
 
       {/* CTA */}
@@ -35,27 +57,37 @@ export default function Home() {
           className="inline-block px-8 py-4 rounded-full border-2 border-amber-400 text-amber-400 font-semibold
                      hover:bg-amber-400 hover:text-black transition-all duration-300"
         >
-          📷 Scan QR
+          📷 Scanner QR
         </Link>
       </motion.div>
 
+      {/* BOUTON INSTALL */}
+      {deferredPrompt && (
+        <button
+          onClick={install}
+          className="mt-6 px-6 py-3 rounded-full border-2 border-amber-400 text-amber-400 font-semibold hover:bg-amber-400 hover:text-black transition"
+        >
+          📲 Installer MboaMuse
+        </button>
+      )}
+
       {/* CARDS */}
       <div className="mt-16 grid gap-8 md:grid-cols-3">
-        {[1, 2, 3].map((id) => (
-          <Link key={id} href={`/oeuvre/${id}`}>
+        {oeuvres.map((oeuvre) => (
+          <Link key={oeuvre.id} href={`/oeuvre/${oeuvre.id}`}>
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="group relative overflow-hidden rounded-2xl border border-amber-500/30 bg-black"
             >
               <img
-                src={`https://source.unsplash.com/400x500/?african,art,${id}`}
-                alt={`Art ${id}`}
+                src={oeuvre.image}
+                alt={oeuvre.titre}
                 className="h-80 w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <h3 className="text-xl font-bold text-amber-100">Artwork {id}</h3>
-                <p className="text-sm text-amber-300">Tap to experience</p>
+                <h3 className="text-xl font-bold text-amber-100">{oeuvre.titre}</h3>
+                <p className="text-sm text-amber-300">Appuyez pour découvrir</p>
               </div>
             </motion.div>
           </Link>

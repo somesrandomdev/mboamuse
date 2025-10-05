@@ -4,16 +4,9 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import oeuvres from '../../../data/oeuvres.json';
+import { oeuvres, Oeuvre } from '../../data/oeuvres';
 
-interface Oeuvre {
-  id: string;
-  titre: string;
-  description: string;
-  narration: string;
-  audio: string;
-  image: string;
-}
+
 
 export default function OeuvrePage() {
   const params = useParams();
