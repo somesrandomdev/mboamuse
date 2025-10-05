@@ -1,60 +1,66 @@
-import Image from "next/image";
+"use client";
 import Link from "next/link";
-import oeuvres from "../data/oeuvres.json";
-import InstallPrompt from "./components/InstallPrompt";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-[#FFD700] flex flex-col">
-      {/* Hero Section */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 py-8">
-        <h1 className="text-6xl md:text-8xl font-serif font-bold text-[#FFD700] mb-4 text-center">
-          MboaMuse
-        </h1>
-        <p className="text-xl md:text-2xl text-[#FFD700] mb-12 text-center">
-          Scan. Listen. Become Royalty.
-        </p>
+    <main className="min-h-screen bg-black text-amber-300 flex flex-col items-center justify-center px-6">
+      {/* HERO */}
+      <motion.h1
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500"
+      >
+        MboaMuse
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="mt-4 text-lg text-amber-200"
+      >
+        Scan · Listen · Become Royalty
+      </motion.p>
 
-        {/* Oeuvres Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-          {oeuvres.map((oeuvre) => (
-            <div key={oeuvre.id} className="bg-black border-2 border-[#FFD700] rounded-lg overflow-hidden shadow-lg">
-              <div className="relative h-64">
-                <Image
-                  src={oeuvre.image}
-                  alt={oeuvre.titre}
-                  fill
-                  className="object-cover"
-                />
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="mt-10"
+      >
+        <Link
+          href="/scan"
+          className="inline-block px-8 py-4 rounded-full border-2 border-amber-400 text-amber-400 font-semibold
+                     hover:bg-amber-400 hover:text-black transition-all duration-300"
+        >
+          📷 Scan QR
+        </Link>
+      </motion.div>
+
+      {/* CARDS */}
+      <div className="mt-16 grid gap-8 md:grid-cols-3">
+        {[1, 2, 3].map((id) => (
+          <Link key={id} href={`/oeuvre/${id}`}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="group relative overflow-hidden rounded-2xl border border-amber-500/30 bg-black"
+            >
+              <img
+                src={`https://source.unsplash.com/400x500/?african,art,${id}`}
+                alt={`Art ${id}`}
+                className="h-80 w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <h3 className="text-xl font-bold text-amber-100">Artwork {id}</h3>
+                <p className="text-sm text-amber-300">Tap to experience</p>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-serif font-bold text-[#FFD700] mb-2">
-                  {oeuvre.titre}
-                </h3>
-                <p className="text-[#FFD700]/80 mb-4">
-                  {oeuvre.description}
-                </p>
-                <Link
-                  href={`/oeuvre/${oeuvre.id}`}
-                  className="inline-block bg-[#FFD700] text-black px-6 py-3 rounded-full font-semibold hover:bg-[#FFD700]/80 transition-colors"
-                >
-                  Écouter l'histoire
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="py-8 px-4 text-center">
-        <p className="text-[#FFD700]/60 mb-4">Install the app for the full experience</p>
-        <button className="bg-[#FFD700] text-black px-6 py-3 rounded-full font-semibold hover:bg-[#FFD700]/80 transition-colors">
-          Install App
-        </button>
-      </footer>
-
-      <InstallPrompt />
-    </div>
+            </motion.div>
+          </Link>
+        ))}
+      </div>
+    </main>
   );
 }

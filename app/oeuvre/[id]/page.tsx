@@ -57,47 +57,23 @@ export default function OeuvrePage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-[#FFD700] relative overflow-hidden">
-      {/* Fullscreen image with zoom */}
-      <motion.div
-        style={{ scale }}
-        className="fixed inset-0 z-0"
-      >
-        <div
-          className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url('https://via.placeholder.com/1000x800/000000/FFD700?text=${oeuvre.titre}')` }}
-        />
-      </motion.div>
-
-      {/* Overlay content */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-center px-4">
-        {/* Narration text */}
-        <div className="absolute bottom-20 left-4 right-4 md:left-8 md:right-8">
-          <motion.p
-            className="text-xl md:text-2xl font-serif text-[#FFD700] leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            {narration}
-          </motion.p>
-        </div>
-
-        {/* CTA Button */}
-        <motion.div
-          className="absolute bottom-8 left-4 right-4 md:left-8 md:right-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.5 }}
-        >
-          <Link
-            href="/face"
-            className="inline-block bg-[#FFD700] text-black px-8 py-4 rounded-full font-semibold hover:bg-[#FFD700]/80 transition-colors text-xl"
-          >
-            Deviens le roi
-          </Link>
-        </motion.div>
-      </div>
+<main className="min-h-screen bg-black text-amber-100">
+  <div className="relative">
+    <img
+      src={oeuvre.image}
+      className="w-full max-h-[70vh] object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+    <div className="absolute bottom-0 left-0 right-0 p-8">
+      <h1 className="text-5xl font-black">{oeuvre.titre}</h1>
+      <p className="mt-2 text-lg text-amber-200">{oeuvre.description}</p>
+      <Link href="/face">
+        <button className="mt-6 px-6 py-3 rounded-full border-2 border-amber-400 text-amber-400 font-semibold hover:bg-amber-400 hover:text-black transition">
+          Deviens le roi
+        </button>
+      </Link>
     </div>
+  </div>
+</main>
   );
 }
