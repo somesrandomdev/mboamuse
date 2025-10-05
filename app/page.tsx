@@ -26,7 +26,8 @@ export default function Home() {
     }
   };
   return (
-    <main className="min-h-screen bg-black text-amber-300 flex flex-col items-center justify-center px-6">
+    <main className="min-h-screen bg-black text-amber-300 flex flex-col items-center justify-center px-6 pb-20">
+      <div className="w-full max-w-6xl mx-auto">
       {/* HERO */}
       <motion.h1
         initial={{ opacity: 0, y: -40 }}
@@ -92,6 +93,7 @@ export default function Home() {
             </motion.div>
           </Link>
         ))}
+      </div>
       </div>
     </main>
   );
