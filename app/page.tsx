@@ -21,7 +21,7 @@ export default function Home() {
             <div key={oeuvre.id} className="bg-black border-2 border-[#FFD700] rounded-lg overflow-hidden shadow-lg">
               <div className="relative h-64">
                 <Image
-                  src="https://via.placeholder.com/400x300/000000/FFD700?text=Artwork"
+                  src={oeuvre.image}
                   alt={oeuvre.titre}
                   fill
                   className="object-cover"

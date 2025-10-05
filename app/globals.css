@@ -15,7 +15,14 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  background: #000;
+  color: #FFD700;
+  font-family: 'Inter', sans-serif;
+}
+.gold-pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .7; }
 }

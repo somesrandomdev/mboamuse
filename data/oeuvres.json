@@ -5,7 +5,7 @@
     "description": "Porté par les rois lors des cérémonies du nouveau millénaire.",
     "narration": "Regarde cette couronne. Elle a porté 7 rois. Tu es le 8e. Regarde bien.",
     "audio": "/audio/1.mp3",
-    "image": "/images/oeuvres/1.jpg"
+    "image": "https://source.unsplash.com/400x300/?african,mask"
   },
   {
     "id": "2",
@@ -13,7 +13,7 @@
     "description": "Symbole de protection, gardienne des ancêtres.",
     "narration": "Elle veille. Elle protège. Elle t’observe. Tu la regardes, elle te regarde.",
     "audio": "/audio/2.mp3",
-    "image": "/images/oeuvres/2.jpg"
+    "image": "https://source.unsplash.com/400x300/?african,statue"
   },
   {
     "id": "3",
@@ -21,6 +21,6 @@
     "description": "Chaque couleur est un mot. Chaque ligne est un poème.",
     "narration": "Le tissu parle. Écoute ses couleurs. Elles racontent ta grandeur.",
     "audio": "/audio/3.mp3",
-    "image": "/images/oeuvres/3.jpg"
+    "image": "https://source.unsplash.com/400x300/?african,textile"
   }
 ]
